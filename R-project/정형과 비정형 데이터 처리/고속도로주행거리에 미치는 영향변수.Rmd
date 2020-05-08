@@ -1,0 +1,78 @@
+---
+title: "고속도로 주행거리에 미치는 영향변수"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#####library#####
+library(foreign)
+library(dplyr)
+library(ggplot2)
+library(readxl)
+library(treemap)
+library(ggiraphExtra)
+library(tibble)
+library(maps)
+library(mapproj)
+library(ggmap)
+library(stringr)
+library(grid)
+library(leaflet)
+library(KoNLP)
+library(rJava)
+library(moments)
+library(Hmisc)
+library(prettyR)
+library(MASS)
+library(gmodels)
+library(rJava)
+library(RJDBC)
+library(rJava)
+library(RJDBC)
+library(party)
+library(datasets)
+
+googleAPIkey<-"AIzaSyD548iSahGuxgvGqfg8P0ytIVF6ksn4NMw"  
+register_google(googleAPIkey)
+
+setwd("C:/Rstudy/work_R")
+```
+
+## mpg 데이터 셋 분류분석 수행 
+
+### 1. 학습데이터와 검정데이터 샘플링 
+
+시드 설정 및 mpg데이터셋 7:3비율로 학습데이터와 검정데이터 샘플링 
+```{r cars}
+mpg_re <- sample(2, nrow(mpg), replace = T, prob = c(0.7,0.3))
+set.seed(1234)
+
+train <- mpg[mpg_re ==1,]
+test <- mpg[mpg_re ==2,]
+
+```
+
+### 2. formula(공식) 생성
+
+```{r pressure}
+formula <- hwy ~ displ+cyl+year 
+```
+
+### 3. 학습데이터에 분류 모델 적용
+```{r}
+mpg_ctree <- ctree(formula, data = train)
+
+```
+
+### 4. 분류 분석 결과 시각화 
+```{r}
+plot(mpg_ctree)
+
+#simple_tree
+plot(mpg_ctree, type = "simple")
+
+```
+
+### 5. 분류분석 결과.
+#### 고속도로 주행거리에 미치는 영향변수는 1. cyl, 2. displ, 3.year 순이다. 

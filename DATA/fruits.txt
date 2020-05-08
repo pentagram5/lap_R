@@ -1,0 +1,5 @@
+no  name  price   qty  
+1   apple   500     5  
+2   banana  200     2  
+3   peach   200     7  
+4   berry    50     9   

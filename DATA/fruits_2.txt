@@ -1,0 +1,6 @@
+# Fruits Test Data - 주석입니다
+1   apple   500     6  
+2   banana  200     2 
+# Null test row - 주석입니다
+3   peach   200     7  
+4   berry    50     9   
